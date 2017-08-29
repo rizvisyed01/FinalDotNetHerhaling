@@ -56,15 +56,48 @@ namespace FinalHerhalingApi.Controllers
         }
 
         // PUT api/values/5
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPatch("{id}")]
+        public ActionResult Put(int id, [FromBody]StudentBasic student)
         {
+            try
+            {
+                if (repo.getStudentById(id) != null)
+                {
+                    repo.changeStudent(id,student);
+                    return Created(Url.Link("StudentGet", new { id = id }), repo.getStudentById(id));
+                }
+                return BadRequest("Error student does not exist");
+
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Error could not change student");
+            }
+
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try
+            {
+                if (repo.getStudentById(id) != null)
+                {
+                    repo.deleteStudent(id);
+                    return Ok();
+                }
+                return BadRequest("Error could not find student");
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Error could not delete");
+            }
+
         }
     }
 }

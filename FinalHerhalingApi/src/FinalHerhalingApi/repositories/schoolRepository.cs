@@ -46,5 +46,20 @@ namespace FinalHerhalingApi.repositories
             });
             Db.SaveChanges();
         }
+
+        public void changeStudent(int id, StudentBasic student)
+        {
+            Studenten old = Db.Studenten.Where(s => s.Studnr == id).First();
+            old.Voornaam = student.Voornaam;
+            old.Familienaam = student.Achternaam;
+            Db.Update(old);
+            Db.SaveChanges();
+        }
+
+        public void deleteStudent(int id)
+        {
+            Db.Studenten.Remove(Db.Studenten.Where(s => s.Studnr == id).First());
+            Db.SaveChanges();
+        }
     }
 }
