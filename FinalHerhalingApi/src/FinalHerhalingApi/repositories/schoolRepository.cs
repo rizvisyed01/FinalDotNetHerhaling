@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace FinalHerhalingApi.repositories
 {
@@ -15,5 +16,35 @@ namespace FinalHerhalingApi.repositories
             Db = context;
         }
 
+        public ICollection<StudentBasic> getAllStudenten()
+        {
+            return Db.Studenten.Select(s => new StudentBasic()
+            {
+                StudId = s.Studnr,
+                Voornaam = s.Voornaam,
+                Achternaam = s.Familienaam
+            }).OrderBy(s => s.StudId).ToList();
+        }
+
+        public StudentBasic getStudentById(int id)
+        {
+            return Db.Studenten.Select(s => new StudentBasic()
+            {
+                StudId = s.Studnr,
+                Voornaam = s.Voornaam,
+                Achternaam = s.Familienaam
+            }).OrderBy(s => s.StudId).Where(s => s.StudId == id).FirstOrDefault();
+        }
+
+        public void addStudent(StudentBasic student)
+        {
+            Db.Studenten.Add(new Studenten()
+            {
+                Studnr = student.StudId,
+                Voornaam = student.Voornaam,
+                Familienaam = student.Achternaam
+            });
+            Db.SaveChanges();
+        }
     }
 }
