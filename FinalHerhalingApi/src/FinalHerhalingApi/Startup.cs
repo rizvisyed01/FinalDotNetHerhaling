@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using FinalHerhalingApi.Entities;
+using Microsoft.EntityFrameworkCore;
+using FinalHerhalingApi.repositories;
 
 namespace FinalHerhalingApi
 {
@@ -29,6 +32,9 @@ namespace FinalHerhalingApi
         {
             // Add framework services.
             services.AddMvc();
+            services.AddDbContext<SchoolContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("SchoolDb")));
+            services.AddScoped<SchoolRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

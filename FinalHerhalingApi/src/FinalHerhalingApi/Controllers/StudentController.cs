@@ -3,13 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using FinalHerhalingApi.repositories;
+
+// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FinalHerhalingApi.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class StudentController : Controller
     {
-        // GET api/values
+        private SchoolRepository repo;
+
+        public StudentController(SchoolRepository schoolRepo)
+        {
+            repo = schoolRepo;
+        }
+
+        // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {

@@ -6,11 +6,17 @@ namespace FinalHerhalingApi.Entities
 {
     public partial class SchoolContext : DbContext
     {
+        public SchoolContext(DbContextOptions<SchoolContext> options):base(options)
+        {
+
+        }
+
+        /**
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-Q8LPA78\SQLEXPRESS;Initial Catalog=school;Integrated Security=True;");
-        }
+        }**/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
