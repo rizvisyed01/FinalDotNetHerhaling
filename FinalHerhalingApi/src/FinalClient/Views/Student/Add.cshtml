@@ -1,0 +1,13 @@
+﻿@model ViewModels.StudentBasic
+
+<!--Html.ValidationSummary()-->
+
+
+<form asp-controller="student" asp-action="Add">
+    <label asp-for="Voornaam"></label>: <input asp-for="Voornaam" type="text"/> <span asp-validation-for="Voornaam"></span>
+    <br />
+    <label asp-for="Achternaam"></label>: <input asp-for="Achternaam" type="text" /> <span asp-validation-for="Achternaam"></span>
+    <br />
+    <input type="submit" value="send"/>
+
+</form>

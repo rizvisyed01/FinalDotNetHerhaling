@@ -1,0 +1,12 @@
+﻿@model ViewModels.StudentBasic
+
+<form asp-controller="student" asp-action="change" asp-antiforgery="true">
+    <input hidden asp-for="StudId">
+    <label asp-for="Voornaam"></label>
+    <input asp-for="Voornaam" /><span asp-validation-for="Voornaam"></span>
+    <br />
+    <label asp-for="Achternaam"></label>
+    <input asp-for="Achternaam" /><span asp-validation-for="Achternaam"></span>
+    <br />
+    <input type="submit" value="change" />
+</form>

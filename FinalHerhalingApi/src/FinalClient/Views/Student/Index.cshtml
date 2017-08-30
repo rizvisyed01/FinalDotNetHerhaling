@@ -1,0 +1,24 @@
+﻿@model ICollection<ViewModels.StudentBasic>
+
+<h1>Index pagina studenten</h1>
+
+<table>
+    <tr>
+        <th>@Html.LabelFor(m => Model.FirstOrDefault().StudId)</th>
+        <th>@Html.LabelFor(m => Model.FirstOrDefault().Voornaam)</th>
+        <th>@Html.LabelFor(m => Model.FirstOrDefault().Achternaam)</th>
+        <th>Delete student</th>
+    </tr>   
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(i => item.StudId)</td>
+        <td>@Html.DisplayFor(i => item.Voornaam)</td>
+        <td>@Html.DisplayFor(i => item.Achternaam)</td>
+        <td><a asp-controller="student" asp-action="delete" asp-route-delId=@item.StudId class="glyphicon glyphicon-erase"></a></td>
+    </tr>
+}
+
+
+
+</table>
